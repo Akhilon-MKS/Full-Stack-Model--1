@@ -1,0 +1,159 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+        }
+
+        .form-container {
+            width: 350px;
+            margin: 50px auto;
+            padding: 25px;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        .error {
+            color: red;
+            font-size: 13px;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        #success {
+            color: green;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-container">
+
+        <h2>Registration Form</h2>
+
+        <form id="registerForm">
+
+            <label>User Name</label>
+            <input type="text" id="name">
+            <span id="nameError" class="error"></span>
+
+            <label>Email</label>
+            <input type="text" id="email">
+            <span id="emailError" class="error"></span>
+
+            <label>Phone Number</label>
+            <input type="text" id="phone">
+            <span id="phoneError" class="error"></span>
+
+            <label>Username</label>
+            <input type="text" id="username">
+            <span id="usernameError" class="error"></span>
+
+            <label>Password</label>
+            <input type="password" id="password">
+            <span id="passwordError" class="error"></span>
+
+            <div class="buttons">
+                <button type="submit">Submit</button>
+                <button type="reset">Reset</button>
+            </div>
+
+            <p id="success"></p>
+
+        </form>
+
+    </div>
+
+    <script>
+
+        document.getElementById("registerForm").addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let phone = document.getElementById("phone").value;
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+
+            let valid = true;
+
+            document.getElementById("nameError").innerHTML = "";
+            document.getElementById("emailError").innerHTML = "";
+            document.getElementById("phoneError").innerHTML = "";
+            document.getElementById("usernameError").innerHTML = "";
+            document.getElementById("passwordError").innerHTML = "";
+            document.getElementById("success").innerHTML = "";
+
+            if (name == "" || !/^[A-Za-z ]+$/.test(name)) {
+                document.getElementById("nameError").innerHTML =
+                    "Enter a valid name";
+                valid = false;
+            }
+
+            if (email == "" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                document.getElementById("emailError").innerHTML =
+                    "Enter a valid email";
+                valid = false;
+            }
+
+            if (phone == "" || !/^[0-9]{10}$/.test(phone)) {
+                document.getElementById("phoneError").innerHTML =
+                    "Phone number must contain 10 digits";
+                valid = false;
+            }
+
+            if (username == "" || username.length < 4) {
+                document.getElementById("usernameError").innerHTML =
+                    "Username must contain at least 4 characters";
+                valid = false;
+            }
+
+            if (password == "" || password.length < 6) {
+                document.getElementById("passwordError").innerHTML =
+                    "Password must contain at least 6 characters";
+                valid = false;
+            }
+
+            if (valid) {
+                document.getElementById("success").innerHTML =
+                    "Form submitted successfully!";
+            }
+        });
+
+    </script>
+
+</body>
+</html>
+```
